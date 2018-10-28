@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchAdvisors} from '../reducers/advisor';
-const AdvisorItem = ({id, name}) => (
+import {fetchAdvisors, modifyAdvisor} from '../reducers/advisor';
+const AdvisorItem = ({id, name, modifyAdvisor}) => (
          <li key={id}>
              {name}
          </li>
@@ -16,7 +16,8 @@ class AdvisorList extends Component {
         return (
          <div className="Advisor-List">
              <ul>
-                {this.props.advisors.map(advisor => <AdvisorItem key={advisor.id} {...advisor} />)}
+                {this.props.advisors.map(advisor => 
+                    <AdvisorItem key={advisor.id} modifyAdvisor={this.props.modifyAdvisor} {...advisor} />)}
             </ul>
          </div>
         )
@@ -25,5 +26,5 @@ class AdvisorList extends Component {
 
 export default connect(
     (state) => ({advisors: state.advisor.advisors}),
-    {fetchAdvisors}
+    {fetchAdvisors, modifyAdvisor}
 )(AdvisorList)

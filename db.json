@@ -55,6 +55,13 @@
       "max_pg": 1,
       "max_ug": 1,
       "id": 8
+    },
+    {
+      "name": "Advisor 9",
+      "research_area": "Marketing",
+      "max_pg": 1,
+      "max_ug": 1,
+      "id": 9
     }
   ]
 }
