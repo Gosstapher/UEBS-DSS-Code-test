@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import AdvisorForm from './components/AdvisorForm';
 import AdvisorList from './components/AdvisorList';
+import {bindActionCreators} from 'redux';
+import {updateCurrent} from './reducers/advisor';
 
 class App extends Component {
   render() {
@@ -16,7 +19,7 @@ class App extends Component {
           <div  className="DSS-App">
              <AdvisorForm 
              currentAdvisor={this.props.currentAdvisor}
-             changeCurrent={this.props.changeCurrent}
+             changeCurrent={this.props.updateCurrent}
              />
              <AdvisorList advisors={this.props.advisors} />
           </div>
@@ -25,5 +28,8 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+ 
+const mapStateToProps = (state) => state
+const mapDispatchToProps = (dispatch) => bindActionCreators({updateCurrent}, dispatch)
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
+export default ConnectedApp
