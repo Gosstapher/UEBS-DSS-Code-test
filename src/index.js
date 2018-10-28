@@ -4,8 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
+import {updateCurrent} from './reducers/advisor';
 
-const advisorChangeHandler = (val) => store.dispatch({type: 'CURRENT_UPDATE', payload: val})
+const advisorChangeHandler = (val) => 
+	store.dispatch(updateCurrent(val))
 
 const render = () => {
 	const state = store.getState()

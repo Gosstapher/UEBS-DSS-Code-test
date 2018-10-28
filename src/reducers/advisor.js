@@ -9,11 +9,16 @@ const initState ={
     currentAdvisor: ''
 }
 
+const ADVISOR_ADD = 'ADVISOR_ADD'
+const CURRENT_UPDATE = 'CURRENT_UPDATE'
+
+export const updateCurrent = (val) => ({type: CURRENT_UPDATE , payload: val})
+
 export default (state = initState, action) => {
 	switch (action.type){
-		case 'ADVISOR_ADD':
+		case ADVISOR_ADD:
 			return {...state , advisors: state.advisors.concat(action.payload)}
-		case 'CURRENT_UPDATE':
+		case CURRENT_UPDATE:
 			return {...state, currentAdvisor: action.payload}
 		default:
 			return state
