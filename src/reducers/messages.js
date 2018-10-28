@@ -1,4 +1,4 @@
-import {ADVISOR_ADD, ADVISORS_LOAD, ADVISORS_REPLACE} from './advisor';
+import {ADVISOR_ADD, ADVISORS_LOAD, ADVISORS_REPLACE, ADVISOR_REMOVE} from './advisor';
 
 const MESSAGE_SHOW = 'MESSAGE_SHOW'
 
@@ -11,6 +11,7 @@ export default function (state='', action) {
 		case ADVISOR_ADD:
 		case ADVISORS_LOAD:
 		case ADVISORS_REPLACE:
+		case ADVISOR_REMOVE:
 			return ''
 		default:
 			return state

@@ -1,4 +1,4 @@
-import {getAdvisors, createAdvisor, updateAdvisor} from '../lib/advisorServices';
+import {getAdvisors, createAdvisor, updateAdvisor, destroyAdvisor} from '../lib/advisorServices';
 import {showMessage} from './messages';
 
 const initState ={
@@ -10,11 +10,13 @@ export const ADVISOR_ADD = 'ADVISOR_ADD'
 export const ADVISORS_LOAD = 'ADVISORS_LOAD'
 const CURRENT_UPDATE = 'CURRENT_UPDATE'
 export const ADVISORS_REPLACE = 'ADVISORS_REPLACE'
+export const ADVISOR_REMOVE = 'ADVISOR_REMOVE'
 
 export const updateCurrent = (val) => ({type: CURRENT_UPDATE , payload: val})
 export const loadAdvisors = (advisors) => ({type: ADVISORS_LOAD, payload: advisors})
 export const addAdvisor = (advisor) => ({type: ADVISOR_ADD, payload: advisor})
 export const replaceAdvisor = (advisor) => ({type: ADVISORS_REPLACE, payload: advisor})
+export const removeAdvisor = (id) => ({type: ADVISOR_REMOVE, payload: id})
 export const fetchAdvisors = () => {
 	return (dispatch) => {
 		dispatch(showMessage('Loading Advisors'))
@@ -42,6 +44,14 @@ export const modifyAdvisor = (id) => {
 	}
 }
 
+export const deleteAdvisor = (id) => {
+	return (dispatch) => {
+		dispatch(showMessage('Removing Advisor'))
+		destroyAdvisor(id)
+			.then(() => dispatch(removeAdvisor(id)))
+	}
+}
+
 export default (state = initState, action) => {
 	switch (action.type){
 		case ADVISOR_ADD:
@@ -54,6 +64,9 @@ export default (state = initState, action) => {
 			return {...state,
 			 advisors: state.advisors
 			 	.map(a => a.id === action.payload.id ? action.payload : a)}
+		case ADVISOR_REMOVE:
+			return {...state,
+			 advisors: state.advisors.filter(a => a.id !== action.payload)}
 		default:
 			return state
 

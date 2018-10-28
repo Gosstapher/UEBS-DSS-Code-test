@@ -26,3 +26,13 @@ export const updateAdvisor = (advisor) => {
 	})
 	.then(res => res.json())
 }
+
+export const destroyAdvisor = (id) => {
+	return fetch(`http://localhost:8080/advisors/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+}
