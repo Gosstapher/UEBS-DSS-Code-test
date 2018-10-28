@@ -14,7 +14,10 @@ class App extends Component {
             UEBS DSS
           </p>
           <div  className="DSS-App">
-             <AdvisorForm />
+             <AdvisorForm 
+             currentAdvisor={this.props.currentAdvisor}
+             changeCurrent={this.props.changeCurrent}
+             />
              <AdvisorList advisors={this.props.advisors} />
           </div>
         </header>
