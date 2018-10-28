@@ -1,10 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {updateCurrent} from '../reducers/advisor';
 
-export default (props) => {
-   const {currentAdvisor, changeCurrent} = props
+const AdvisorForm = (props) => {
+   const {currentAdvisor, updateCurrent} = props
    const handleInputChange =(evt) => {
    	const val = evt.target.value
-   	changeCurrent(val)
+   	updateCurrent(val)
    }
    return (
 	    <form>
@@ -14,3 +16,8 @@ export default (props) => {
 	    </form> 
     )	
 }
+
+export default connect(
+	(state) => ({currentAdvisor: state.currentAdvisor}),
+	{updateCurrent}
+)(AdvisorForm)
