@@ -24,6 +24,6 @@ class AdvisorList extends Component {
 }
 
 export default connect(
-    (state) => ({advisors: state.advisors}),
+    (state) => ({advisors: state.advisor.advisors}),
     {fetchAdvisors}
 )(AdvisorList)

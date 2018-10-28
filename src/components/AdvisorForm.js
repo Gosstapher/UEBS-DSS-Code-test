@@ -1,23 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {updateCurrent} from '../reducers/advisor';
+import {updateCurrent, saveAdvisor} from '../reducers/advisor';
 
-const AdvisorForm = (props) => {
-   const {currentAdvisor, updateCurrent} = props
-   const handleInputChange =(evt) => {
-   	const val = evt.target.value
-   	updateCurrent(val)
-   }
-   return (
-	    <form>
-	        <input type="text" 
-	        onChange={handleInputChange}
-	        value= {currentAdvisor}/>
-	    </form> 
-    )	
+class AdvisorForm extends Component {
+
+	handleInputChange = (evt) => {
+   		const val = evt.target.value
+   		this.props.updateCurrent(val)
+   	}
+
+   	handleSubmit = (evt) => {
+   		evt.preventDefault()
+   		this.props.saveAdvisor(this.props.currentAdvisor)
+   	}
+
+	render() {
+		const {currentAdvisor} = this.props
+	    return (
+		    <form onSubmit={this.handleSubmit}>
+		        <input type="text" 
+		        onChange={this.handleInputChange}
+		        value= {currentAdvisor}/>
+		    </form> 
+    	)
+	}
 }
 
 export default connect(
-	(state) => ({currentAdvisor: state.currentAdvisor}),
-	{updateCurrent}
+	(state) => ({currentAdvisor: state.advisor.currentAdvisor}),
+	{updateCurrent, saveAdvisor}
 )(AdvisorForm)

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import AdvisorForm from './components/AdvisorForm';
 import AdvisorList from './components/AdvisorList';
+import Message from './components/Message';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
             UEBS DSS
           </p>
           <div  className="DSS-App">
+             <Message />
              <AdvisorForm />
              <AdvisorList />
           </div>
