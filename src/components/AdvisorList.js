@@ -25,6 +25,10 @@ const columns = [{
 }, {
     Header: 'Maximum UG Students',
     accessor: 'max_ug'
+}, {
+    Header: 'Delete Advisor',
+    id: 'click-me-button',
+    Cell: ({ row }) => (<button onClick={() => deleteAdvisor()}>X</button>)
 }]
    
 class AdvisorList extends Component {
@@ -40,6 +44,7 @@ class AdvisorList extends Component {
                         data={this.props.advisors}
                         columns={columns}
                         defaultPageSize={10}
+                        className="-striped -highlight"
                     />
                 </div>
             </div>
