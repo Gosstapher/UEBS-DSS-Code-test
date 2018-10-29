@@ -27,6 +27,13 @@
       "max_pg": "2",
       "max_ug": "1",
       "id": 4
+    },
+    {
+      "name": "Advisor 5",
+      "research_area": "Organisation Studies",
+      "max_pg": "4",
+      "max_ug": "6",
+      "id": 5
     }
   ]
 }

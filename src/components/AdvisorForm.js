@@ -42,15 +42,22 @@ class AdvisorForm extends Component {
 			        name="Name" 
 			        onChange={this.handleInputNameChange}
 			        value= {currentAdvisorName} required/>
-		        <input type="text"
+		        <select type="text"
 			        name="Research Area" 
 			        onChange={this.handleInputRAChange}
-			        value= {currentAdvisorRA}/>
-		        <input type="text"
+			        value= {currentAdvisorRA}>
+			        <option value="Accounting and Finance">Accounting and Finance</option>
+			        <option value="Entrepreneurship and Innovation">Entrepreneurship and Innovation</option>
+			        <option value="Management Science and Business Economics">Management Science and Business Economics</option>
+			        <option value="Marketing">Marketing</option>
+			        <option value="Organisation Studies">Organisation Studies</option>
+			        <option value="Strategy">Strategy</option>
+			    </select>
+		        <input type="number" min="0"
 			        name="Max PG" 
 			        onChange={this.handleInputMaxPGChange}
 			        value= {currentAdvisorMaxPG}/>
-		        <input type="text"
+		        <input type="number" min="0"
 			        name="Max UG" 
 			        onChange={this.handleInputMaxUGChange}
 			        value= {currentAdvisorMaxUG}/>
