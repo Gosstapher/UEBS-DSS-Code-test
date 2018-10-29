@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import logo from './logo.svg';
+import logo from './logo_schoolbiz2.png';
 import './App.css';
 import AdvisorForm from './components/AdvisorForm';
 import AdvisorList from './components/AdvisorList';
@@ -13,9 +13,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            UEBS DSS
-          </p>
+          <h3>
+            UEBS DSS Advisors
+          </h3>
           <Router>
             <div className="DSS-App">
                <Message />

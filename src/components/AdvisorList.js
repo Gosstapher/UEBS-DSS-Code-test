@@ -1,31 +1,48 @@
 import React, {Component} from 'react';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 import {connect} from 'react-redux';
 import {fetchAdvisors, modifyAdvisor, deleteAdvisor} from '../reducers/advisor';
-const AdvisorItem = ({id, name, modifyAdvisor, deleteAdvisor}) => (
-        <li>
-            <span className='delete-item'>
-                <button onClick={() => deleteAdvisor(id)}>X</button>
-             </span>
-            {name}
-        </li>
-    )
 
+// const AdvisorItem = ({id, name, research_area, max_pg, max_ug, modifyAdvisor, deleteAdvisor}) => (
+//         <li>
+//             <span className='delete-item'>
+//                 <button onClick={() => deleteAdvisor(id)}>X</button>
+//              </span>
+//             <p>{name} {research_area}</p>
+//         </li>
+//     )
+
+const columns = [{
+    Header: 'Advisor',
+    accessor: 'name'
+}, {
+    Header: 'Research Area',
+    accessor: 'research_area'
+}, {
+    Header: 'Maximum PG Students',
+    accessor: 'max_pg'
+}, {
+    Header: 'Maximum UG Students',
+    accessor: 'max_ug'
+}]
+   
 class AdvisorList extends Component {
     componentDidMount() {
         this.props.fetchAdvisors()
     }
-
     render() {
         return (
-         <div className="Advisor-List">
-             <ul>
-                {this.props.advisors.map(advisor => 
-                    <AdvisorItem key={advisor.id}
-                     modifyAdvisor={this.props.modifyAdvisor}
-                     deleteAdvisor={this.props.deleteAdvisor}
-                     {...advisor} />)}
-            </ul>
-         </div>
+            <div>
+                
+                <div>
+                    <ReactTable 
+                        data={this.props.advisors}
+                        columns={columns}
+                        defaultPageSize={10}
+                    />
+                </div>
+            </div>
         )
     }
 }

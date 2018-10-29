@@ -3,16 +3,25 @@ import {showMessage} from './messages';
 
 const initState ={
 	advisors:  [],
-    currentAdvisor: ''
+    currentAdvisorName:'',
+    currentAdvisorRA: '',
+    currentAdvisorMaxPG: 0,
+    currentAdvisorMaxUG: 0
 }
 
 export const ADVISOR_ADD = 'ADVISOR_ADD'
 export const ADVISORS_LOAD = 'ADVISORS_LOAD'
-const CURRENT_UPDATE = 'CURRENT_UPDATE'
+const CURRENT_NAME_UPDATE = 'CURRENT_NAME_UPDATE'
+const CURRENT_RA_UPDATE = 'CURRENT_RA_UPDATE'
+const CURRENT_MAXPG_UPDATE = 'CURRENT_MAXPG_UPDATE'
+const CURRENT_MAXUG_UPDATE = 'CURRENT_MAXUG_UPDATE'
 export const ADVISORS_REPLACE = 'ADVISORS_REPLACE'
 export const ADVISOR_REMOVE = 'ADVISOR_REMOVE'
 
-export const updateCurrent = (val) => ({type: CURRENT_UPDATE , payload: val})
+export const updateCurrentName = (val) => ({type: CURRENT_NAME_UPDATE , payload: val})
+export const updateCurrentRA = (val) => ({type: CURRENT_RA_UPDATE , payload: val})
+export const updateCurrentMaxPG = (val) => ({type: CURRENT_MAXPG_UPDATE , payload: val})
+export const updateCurrentMaxUG = (val) => ({type: CURRENT_MAXUG_UPDATE , payload: val})
 export const loadAdvisors = (advisors) => ({type: ADVISORS_LOAD, payload: advisors})
 export const addAdvisor = (advisor) => ({type: ADVISOR_ADD, payload: advisor})
 export const replaceAdvisor = (advisor) => ({type: ADVISORS_REPLACE, payload: advisor})
@@ -25,7 +34,7 @@ export const fetchAdvisors = () => {
 	}
 }
 
-export const saveAdvisor = (name, research_area = "Marketing", max_pg = 1, max_ug = 1) => {
+export const saveAdvisor = (name = "temp", research_area = "temp", max_pg = 0, max_ug = 0) => {
 	return (dispatch) => {
 		dispatch(showMessage('Saving Advisor'))
 		createAdvisor(name, research_area, max_pg, max_ug)
@@ -55,11 +64,17 @@ export const deleteAdvisor = (id) => {
 export default (state = initState, action) => {
 	switch (action.type){
 		case ADVISOR_ADD:
-			return {...state, currentAdvisor: '', advisors: state.advisors.concat(action.payload)}
+			return {...state, currentAdvisorName: '', currentAdvisorRA: '', currentAdvisorMaxPG: 0, currentAdvisorMaxUG: 0, advisors: state.advisors.concat(action.payload)}
 		case ADVISORS_LOAD:
 			return {...state, advisors: action.payload}
-		case CURRENT_UPDATE:
-			return {...state, currentAdvisor: action.payload}
+		case CURRENT_NAME_UPDATE:
+			return {...state, currentAdvisorName: action.payload}
+		case CURRENT_RA_UPDATE:
+			return {...state, currentAdvisorRA: action.payload}
+		case CURRENT_MAXUG_UPDATE:
+			return {...state, currentAdvisorMaxUG: action.payload}
+		case CURRENT_MAXPG_UPDATE:
+			return {...state, currentAdvisorMaxPG: action.payload}
 		case ADVISORS_REPLACE:
 			return {...state,
 			 advisors: state.advisors
