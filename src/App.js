@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import AdvisorForm from './components/AdvisorForm';
 import AdvisorList from './components/AdvisorList';
 import Message from './components/Message';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -14,11 +16,14 @@ class App extends Component {
           <p>
             UEBS DSS
           </p>
-          <div  className="DSS-App">
-             <Message />
-             <AdvisorForm />
-             <AdvisorList />
-          </div>
+          <Router>
+            <div className="DSS-App">
+               <Message />
+               <AdvisorForm />
+               <AdvisorList />
+               <Footer />
+            </div>
+          </Router>
         </header>
       </div>
     );
